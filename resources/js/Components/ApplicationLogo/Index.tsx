@@ -10,7 +10,7 @@ export default function ApplicationLogo({
     return (
         <Link href={url} className="flex items-center gap-2">
             <IconInnerShadowBottomRight
-                className={cn("text-orange-500", size)}
+                className={cn("text-black", size)}
             />
             {isTitle && (
                 <div className="flex flex-col">
