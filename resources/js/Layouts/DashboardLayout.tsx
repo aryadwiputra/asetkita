@@ -18,6 +18,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { toast } from "sonner";
 import { User } from "@/types"; // Import type User
 import * as React from "react";
+import CustomBreadcrumb from "@/Components/Dashboard/CustomBreadcrumb";
 
 interface DashboardLayoutProps {
     title?: string;
@@ -41,12 +42,12 @@ export default function Page({ children, title }: DashboardLayoutProps) {
 
     React.useEffect(() => {
         if (flash.success) {
-            toast("Success", {
+            toast.success("Success", {
                 description: flash.success,
             });
         }
         if (flash.error) {
-            toast("Error", {
+            toast.error("Error", {
                 description: flash.error,
             });
         }
@@ -55,7 +56,6 @@ export default function Page({ children, title }: DashboardLayoutProps) {
     return (
         <>
             <Head title={title} />
-
             <SidebarProvider>
                 <AppSidebar user={auth.user} />
                 <SidebarInset>
@@ -66,21 +66,7 @@ export default function Page({ children, title }: DashboardLayoutProps) {
                                 orientation="vertical"
                                 className="mr-2 h-4"
                             />
-                            <Breadcrumb>
-                                <BreadcrumbList>
-                                    <BreadcrumbItem className="hidden md:block">
-                                        <BreadcrumbLink href="#">
-                                            Building Your Application
-                                        </BreadcrumbLink>
-                                    </BreadcrumbItem>
-                                    <BreadcrumbSeparator className="hidden md:block" />
-                                    <BreadcrumbItem>
-                                        <BreadcrumbPage>
-                                            Data Fetching
-                                        </BreadcrumbPage>
-                                    </BreadcrumbItem>
-                                </BreadcrumbList>
-                            </Breadcrumb>
+                            <CustomBreadcrumb />
                         </div>
                     </header>
                     <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
@@ -88,8 +74,7 @@ export default function Page({ children, title }: DashboardLayoutProps) {
                     </div>
                 </SidebarInset>
             </SidebarProvider>
-
-            <Toaster />
+            <Toaster position="top-right" />
         </>
     );
 }
