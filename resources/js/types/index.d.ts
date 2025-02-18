@@ -1,8 +1,12 @@
 export interface User {
     id: number;
     name: string;
+    username: string;
     email: string;
+    phone: string;
+    address: string;
     email_verified_at?: string;
+    status: string;
     roles: Role[];
 }
 

@@ -74,7 +74,7 @@ export default function Page({ children, title }: DashboardLayoutProps) {
                     </div>
                 </SidebarInset>
             </SidebarProvider>
-            <Toaster position="top-right" />
+            <Toaster position="bottom-right" richColors />
         </>
     );
 }
