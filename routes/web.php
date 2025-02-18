@@ -14,9 +14,18 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard/Index');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::middleware('auth')->prefix('dashboard')->name('dashboard.')->group(function () {
+    Route::get('/', function(){
+        return Inertia::render('Dashboard/Index');
+    })->name('index');
+
+    Route::resource('users', \App\Http\Controllers\UserController::class);
+    Route::resource('permissions', \App\Http\Controllers\PermissionController::class);
+    Route::resource('roles', \App\Http\Controllers\RoleController::class);
+    // Route::get('/settings', [App\Http\Controllers\SettingController::class, 'index'])->name('settings.index');
+    // Route::put('/settings', [App\Http\Controllers\SettingController::class, 'update'])->name('settings.update');
+});
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
