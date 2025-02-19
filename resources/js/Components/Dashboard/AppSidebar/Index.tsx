@@ -2,6 +2,7 @@ import * as React from "react";
 import {
     BookOpen,
     Bot,
+    BoxesIcon,
     Command,
     Frame,
     HomeIcon,
@@ -55,7 +56,7 @@ const data = {
                 {
                     title: "Categories",
                     url: "/dashboard/categories",
-                    icon: Frame,
+                    icon: BoxesIcon,
                 },
             ],
         },

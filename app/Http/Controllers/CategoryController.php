@@ -56,7 +56,9 @@ class CategoryController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $category = Category::find($id);
+
+        return Inertia::render('Dashboard/Categories/Edit', ['category' => $category]);
     }
 
     /**
@@ -64,7 +66,18 @@ class CategoryController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'name' => 'required|min:3|max:255',
+        ]);
+
+        $category = Category::find($id);
+
+        $category->update([
+            'name' => $request->name,
+            'slug'=> \Illuminate\Support\Str::slug($request->name),
+        ]);
+
+        return to_route('dashboard.categories.index')->with('success','Successfully updated category');
     }
 
     /**
@@ -72,6 +85,10 @@ class CategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $category = Category::find($id);
+
+        $category->delete();
+
+        return to_route('dashboard.categories.index')->with('success','Successfully deleted category');
     }
 }

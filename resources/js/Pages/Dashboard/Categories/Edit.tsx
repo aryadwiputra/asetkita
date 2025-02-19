@@ -1,6 +1,7 @@
 import * as React from "react";
 import DashboardLayout from "@/Layouts/DashboardLayout";
 import { Link, useForm } from "@inertiajs/react";
+
 import { Button } from "@/components/ui/button";
 import {
     Card,
@@ -12,45 +13,25 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Role, User } from "@/types";
+import { Category } from "@/types/category";
 import { Checkbox } from "@/components/ui/checkbox";
 
-interface EditProps {
-    user: User;
-    roles: Role[];
-}
-
-function Edit({ user, roles }: EditProps) {
+function Edit({ category }: { category: Category }) {
     const { data, setData, put, processing, errors } = useForm({
-        name: user.name || "",
-        email: user.email || "",
-        password: "",
-        password_confirmation: "",
-        selectedRoles: user.roles.map((role) => role.name) || [],
+        name: category.name,
     });
-
-    const handleSelectedRoles = (checked: boolean, roleName: string) => {
-        let items = data.selectedRoles;
-        if (checked) {
-            items.push(roleName);
-        } else {
-            items = items.filter((item) => item !== roleName);
-        }
-        setData("selectedRoles", items);
-    };
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        put(route("dashboard.users.update", user.id));
+        put(route("dashboard.categories.update", category.id));
     };
-
     return (
         <>
             <Card>
                 <CardHeader>
-                    <CardTitle>Edit User</CardTitle>
+                    <CardTitle>Edit category</CardTitle>
                     <CardDescription>
-                        Edit the user account details
+                        Edit a category for assets
                     </CardDescription>
                 </CardHeader>
                 <form onSubmit={handleSubmit}>
@@ -60,7 +41,7 @@ function Edit({ user, roles }: EditProps) {
                                 <Label htmlFor="name">Name</Label>
                                 <Input
                                     id="name"
-                                    placeholder="John Doe"
+                                    placeholder="Electronic"
                                     onChange={(e) =>
                                         setData("name", e.target.value)
                                     }
@@ -72,99 +53,11 @@ function Edit({ user, roles }: EditProps) {
                                     </p>
                                 )}
                             </div>
-                            <div className="flex flex-col space-y-1.5">
-                                <Label htmlFor="email">Email</Label>
-                                <Input
-                                    id="email"
-                                    placeholder="example@me.com"
-                                    onChange={(e) =>
-                                        setData("email", e.target.value)
-                                    }
-                                    value={data.email}
-                                />
-                                {errors.email && (
-                                    <p className="text-red-500">
-                                        {errors.email}
-                                    </p>
-                                )}
-                            </div>
-                            <div className="flex flex-col space-y-3">
-                                <Label htmlFor="roles">Roles</Label>
-                                <div className="flex flex-row flex-wrap gap-4">
-                                    {roles.map((role, i) => (
-                                        <div
-                                            className="flex items-center space-x-2"
-                                            key={i}
-                                        >
-                                            <Checkbox
-                                                value={role.name}
-                                                checked={data.selectedRoles.includes(
-                                                    role.name
-                                                )}
-                                                onCheckedChange={(checked) =>
-                                                    handleSelectedRoles(
-                                                        Boolean(checked),
-                                                        role.name
-                                                    )
-                                                }
-                                            />
-                                            <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-                                                {role.name}
-                                            </label>
-                                        </div>
-                                    ))}
-                                </div>
-                                {errors.selectedRoles && (
-                                    <p className="text-red-500">
-                                        {errors.selectedRoles}
-                                    </p>
-                                )}
-                            </div>
-                            {/* Grid Col for password and password confirmation */}
-                            <div className="grid grid-cols-2 gap-4">
-                                <div className="flex flex-col space-y-1.5">
-                                    <Label htmlFor="password">Password</Label>
-                                    <Input
-                                        id="password"
-                                        type="password"
-                                        onChange={(e) =>
-                                            setData("password", e.target.value)
-                                        }
-                                        value={data.password}
-                                    />
-                                    {errors.password && (
-                                        <p className="text-red-500">
-                                            {errors.password}
-                                        </p>
-                                    )}
-                                </div>
-                                <div className="flex flex-col space-y-1.5">
-                                    <Label htmlFor="password_confirmation">
-                                        Confirm Password
-                                    </Label>
-                                    <Input
-                                        id="password_confirmation"
-                                        type="password"
-                                        onChange={(e) =>
-                                            setData(
-                                                "password_confirmation",
-                                                e.target.value
-                                            )
-                                        }
-                                        value={data.password_confirmation}
-                                    />
-                                    {errors.password_confirmation && (
-                                        <p className="text-red-500">
-                                            {errors.password_confirmation}
-                                        </p>
-                                    )}
-                                </div>
-                            </div>
                         </div>
                     </CardContent>
                     <CardFooter className="flex space-x-2">
                         <Button variant="outline" asChild disabled={processing}>
-                            <Link href={route("dashboard.users.index")}>
+                            <Link href={route("dashboard.categories.index")}>
                                 Back
                             </Link>
                         </Button>
@@ -179,7 +72,7 @@ function Edit({ user, roles }: EditProps) {
 }
 
 Edit.layout = (page: React.ReactNode) => (
-    <DashboardLayout title="Edit User" children={page} />
+    <DashboardLayout title="Edit new category" children={page} />
 );
 
 export default Edit;

@@ -5,7 +5,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import { Category } from "@/types/category";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Link, router } from "@inertiajs/react";
-import { ArrowUpDown, TreesIcon, UsersIcon } from "lucide-react";
+import { ArrowUpDown, BoxesIcon, TreesIcon, UsersIcon } from "lucide-react";
 import { DataTableRowActions } from "@/Components/Dashboard/DataTable/DataTableRowActions";
 import { CreateCategory } from "@/Components/Dashboard/Categories/CreateCategory";
 
@@ -47,7 +47,7 @@ function Index({ categories }: { categories: Category[] }) {
                         {/* Menambahkan ikon */}
                         <div className="flex flex-col">
                             <div className="flex items-center space-x-2">
-                                <TreesIcon />{" "}
+                                <BoxesIcon />{" "}
                                 <h1 className="text-2xl font-bold">Categories</h1>
                             </div>
                             <p className="text-sm text-muted-foreground">
