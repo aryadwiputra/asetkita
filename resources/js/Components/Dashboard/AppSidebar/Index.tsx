@@ -50,6 +50,16 @@ const data = {
             ],
         },
         {
+            group: "Master Data", // Kategori grup
+            items: [
+                {
+                    title: "Categories",
+                    url: "/dashboard/categories",
+                    icon: Frame,
+                },
+            ],
+        },
+        {
             group: "User Management", // Kategori grup
             items: [
                 {
@@ -79,21 +89,6 @@ const data = {
                 },
             ],
         },
-        // {
-        //     group: "Master Data", // Kategori grup
-        //     items: [
-        //         {
-        //             title: "Projects",
-        //             url: "/projects",
-        //             icon: Frame,
-        //         },
-        //         {
-        //             title: "Sales & Marketing",
-        //             url: "/sales-marketing",
-        //             icon: PieChart,
-        //         },
-        //     ],
-        // },
     ],
     navSecondary: [
         {
