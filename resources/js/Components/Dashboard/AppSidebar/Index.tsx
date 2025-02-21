@@ -9,6 +9,7 @@ import {
     LifeBuoy,
     Map,
     PieChart,
+    RulerIcon,
     Send,
     Settings2,
     SettingsIcon,
@@ -58,10 +59,16 @@ const data = {
                     title: "Categories",
                     url: "/dashboard/categories",
                     icon: BoxesIcon,
-                },{
+                },
+                {
                     title: "Class",
                     url: "/dashboard/classes",
                     icon: ShapesIcon,
+                },
+                {
+                    title: "Unit of Measurements",
+                    url: "/dashboard/unit_of_measurements",
+                    icon: RulerIcon,
                 },
             ],
         },
