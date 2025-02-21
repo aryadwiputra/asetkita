@@ -23,6 +23,7 @@ Route::middleware('auth')->prefix('dashboard')->name('dashboard.')->group(functi
     Route::resource('permissions', \App\Http\Controllers\PermissionController::class);
     Route::resource('roles', \App\Http\Controllers\RoleController::class);
     Route::resource('categories', \App\Http\Controllers\CategoryController::class)->except('create', 'show');
+    Route::resource('classes', \App\Http\Controllers\ClassesController::class)->except( 'show');
     // Route::get('/settings', [App\Http\Controllers\SettingController::class, 'index'])->name('settings.index');
     // Route::put('/settings', [App\Http\Controllers\SettingController::class, 'update'])->name('settings.update');
 });

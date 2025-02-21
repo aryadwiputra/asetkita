@@ -116,6 +116,7 @@ function Create({ roles }: { roles: Role[] }) {
                                     </p>
                                 )}
                             </div>
+
                             {/* Grid Col for password and password confirmation */}
                             <div className="grid grid-cols-2 gap-4">
                                 <div className="flex flex-col space-y-1.5">

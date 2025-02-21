@@ -12,6 +12,7 @@ import {
     Send,
     Settings2,
     SettingsIcon,
+    ShapesIcon,
     Shield,
     ShieldIcon,
     SquareTerminal,
@@ -57,6 +58,10 @@ const data = {
                     title: "Categories",
                     url: "/dashboard/categories",
                     icon: BoxesIcon,
+                },{
+                    title: "Class",
+                    url: "/dashboard/classes",
+                    icon: ShapesIcon,
                 },
             ],
         },
